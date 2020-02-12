@@ -2,14 +2,17 @@
 // Created by Luke on 2/5/2020.
 //
 
+//TODO: FIX TESTING SO IT TESTS ALL NEW CLASSES, TESTS METHODS FROM APPROPRIATE LOCATION
+
 #include <cmath>
 #include <iostream>
 #include <optional>
 #include "Lens.h"
-#include "globals.h"
 
-typedef std::optional<std::string> opt_string;
-
+bool test_photograph();
+bool test_photograph_helper();
+bool test_camera();
+bool test_camera_helper();
 bool test_lens();
 bool test_lens_helper(Lens &lens, double e_focal_length, double e_f_stop, double e_circle_of_confusion,
                       double e_frame_width, double e_frame_height, opt_string e_name);
