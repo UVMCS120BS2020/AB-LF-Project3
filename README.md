@@ -7,6 +7,7 @@ For this project you will design, implement, test, and use C++ class inheritance
 - [ ] The Abstract_Lens class.
 - [ ] Style clean up
 - [ ] RME's
+
 **Luke** is working on:
 - [ ] Testing functions.
 
