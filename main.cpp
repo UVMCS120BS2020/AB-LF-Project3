@@ -1,6 +1,7 @@
 #include <iostream>
 #include <iomanip>
 #include <memory>
+
 #include "Lens.h"
 #include "globals.h"
 #include <experimental/optional>

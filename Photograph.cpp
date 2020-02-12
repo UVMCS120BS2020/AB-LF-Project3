@@ -5,25 +5,25 @@
 #include <cmath>
 #include "Photograph.h"
 
+Photograph::Photograph(Camera &camera_, double subject_distance_) {
+    camera = camera_;
+    subject_distance = subject_distance_;
+}
 
-
-Photograph::Photograph(const Camera &camera, double subject_distance) : camera(camera),
-                                                                        subject_distance(subject_distance) {}
-
-const Camera &Photograph::get_camera() const {
+Camera Photograph::get_camera() const {
     return camera;
 }
 
-void Photograph::set_camera(const Camera &camera) {
-    Photograph::camera = camera;
+void Photograph::set_camera(Camera &camera_) {
+    camera = camera_;
 }
 
 double Photograph::get_subject_distance() const {
     return subject_distance;
 }
 
-void Photograph::set_subject_distance(double subject_distance) {
-    Photograph::subject_distance = subject_distance;
+void Photograph::set_subject_distance(double subject_distance_) {
+    Photograph::subject_distance = subject_distance_;
 }
 
 double Photograph::depth_of_field() {

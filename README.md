@@ -2,13 +2,21 @@
 Due on Gradescope by Friday, February 21st.
 For this project you will design, implement, test, and use C++ class inheritance with components.
 
+## To Do:
+**Austin** is working on:
+- [ ] The Abstract_Lens class.
+- [ ] Style clean up
+- [ ] RME's
+**Luke** is working on:
+- [ ] Testing functions.
+
 ## Requirements
 - You may work individually or with a partner of your choosing.
     - You may reuse code from previous project(s), if appropriate.
     
 - [ ] All of your programming files should be in a private GitHub repository in your section’s organization.
     - [ ]  The repository must be named with your initials + dash + Project3 (e.g. LD-JH-Project3).
-    - [ ]  The repository should have a .gitignore file and a README file.
+    - [ ]  The repository should have a `.gitignore` file and a README file.
     
 - [ ]  You will need to have at least four classes, each of which satisfy exactly one of these requirements:
     - [ ]  A parent class that may or may not be abstract;
@@ -23,7 +31,7 @@ Where does the component belong?
 How will the unrelated class interact with the others?
     >a
 
-- [ ]  Your classes should be declared in header file(s) (with comments) and defined in corresponding .cpp file(s).
+- [ ]  Your classes should be declared in header file(s) (with comments) and defined in corresponding `.cpp` file(s).
 
 - [ ]  To make sure your classes are working the way you designed, include a `testing.cpp` file that has a main function 
 and tests all of your non-trivial methods thoroughly.

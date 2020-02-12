@@ -5,12 +5,14 @@
 #ifndef LF_PROJECT2_CAMERA_H
 #define LF_PROJECT2_CAMERA_H
 
-#include <optional>
 #include "Lens.h"
-
+#include <experimental/optional>
+using std::experimental::optional;
+using std::experimental::nullopt;
+using std::experimental::make_optional;
 using namespace std;
 
-typedef std::optional<std::string> opt_string;
+typedef optional<string> opt_string;
 
 class Camera {
 private:
