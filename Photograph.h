@@ -15,14 +15,12 @@ private:
 public:
     constexpr static const double MM_PER_METER = 1000;
 
-    Photograph(const Camera &camera, double subject_distance);
+    Photograph(Camera &camera, double subject_distance);
 
-
-    const Camera &get_camera() const;
+    Camera get_camera() const;
     double get_subject_distance() const;
 
-
-    void set_camera(const Camera &camera);
+    void set_camera(Camera &camera);
     void set_subject_distance(double subject_distance);
 
 public:

@@ -2,6 +2,14 @@
 Due on Gradescope by Friday, February 21st.
 For this project you will design, implement, test, and use C++ class inheritance with components.
 
+## To Do:
+**Austin** is working on:
+- [ ] The Abstract_Lens class.
+- [ ] Style clean up
+- [ ] RME's
+**Luke** is working on:
+- [ ] Testing functions.
+
 ## Requirements
 - You may work individually or with a partner of your choosing.
     - You may reuse code from previous project(s), if appropriate.
