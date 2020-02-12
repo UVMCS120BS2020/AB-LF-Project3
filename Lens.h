@@ -1,17 +1,18 @@
 //
 // Created by Luke on 1/20/2020.
 //
-
-#include <optional>
-#include <iostream>
-#include <iomanip>
-
 #ifndef LF_PROJECT1_LENS_H
 #define LF_PROJECT1_LENS_H
 
+#include <iostream>
+#include <iomanip>
+#include <experimental/optional>
+using std::experimental::optional;
+using std::experimental::nullopt;
+using std::experimental::make_optional;
 using namespace std;
 
-typedef std::optional<std::string> opt_string;
+typedef optional<string> opt_string;
 
 class Lens {
 private:

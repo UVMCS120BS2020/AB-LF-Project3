@@ -3,8 +3,13 @@
 //
 
 #include "Lens.h"
+#include <experimental/optional>
+using std::experimental::optional;
+using std::experimental::nullopt;
+using std::experimental::make_optional;
+using namespace std;
 
-typedef std::optional<std::string> opt_string;
+typedef optional<string> opt_string;
 
 /********************** Lens class **********************/
 
@@ -15,7 +20,7 @@ Lens::Lens() {
     // f/stop = focal length (mm) / aperture diameter (mm)
     f_stop = 4.0;
     // Name of the lens, by default nothing.
-    name = std::nullopt;
+    name = nullopt;
 
 }
 
