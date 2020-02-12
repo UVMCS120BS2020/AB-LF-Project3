@@ -3,8 +3,13 @@
 //
 
 #include "Lens.h"
+#include <experimental/optional>
+using std::experimental::optional;
+using std::experimental::nullopt;
+using std::experimental::make_optional;
+using namespace std;
 
-typedef std::optional<std::string> opt_string;
+typedef optional<string> opt_string;
 
 /********************** Lens class **********************/
 
@@ -22,7 +27,7 @@ Lens::Lens() {
     // This is a measure of the sensor or film height in millimeters. 24mm is the height of a standard 35mm film frame.
     frame_height = 24.0;
     // Name of the lens, by default nothing.
-    name = std::nullopt;
+    name = nullopt;
 
 }
 

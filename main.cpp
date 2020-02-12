@@ -1,13 +1,16 @@
 #include <iostream>
 #include <iomanip>
 #include <memory>
-#include <optional>
 #include "Lens.h"
 #include "globals.h"
-
-typedef std::optional<std::string> opt_string;
-
+#include <experimental/optional>
+using std::experimental::optional;
+using std::experimental::nullopt;
+using std::experimental::make_optional;
 using namespace std;
+
+typedef optional<string> opt_string;
+
 
 // the conversion factor between mm and meters
 double const MM_PER_METER = 1000;
