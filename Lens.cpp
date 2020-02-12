@@ -57,7 +57,7 @@ void Lens::set_name(opt_string &name_) {
 }
 
 void Lens::clear_name() {
-    name = std::nullopt;
+    name = nullopt;
 }
 
 // the conversion factor between mm and meters
