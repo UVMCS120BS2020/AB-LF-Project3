@@ -7,6 +7,7 @@
 
 
 class Abstract_Lens {
+private:
 
 };
 

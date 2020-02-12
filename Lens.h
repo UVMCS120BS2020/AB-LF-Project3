@@ -46,23 +46,6 @@ public:
     // Modifies: name
     // Effects: sets name to nullopt
     void clear_name();
-
-    // TODO: MOVE DOF FUNCTION TO PHOTOGRAPH CLASS
-//    // Requires: A non-negative, non-zero double, which is greater than the focal length in mm of the lens.
-//    // Modifies: Nothing
-//    // Effects: Calculates the total depth of field (the depth of a 3-dimensional area of space which is appropriately in focus)
-//    //          If subject distance is beyond the hyper-focal distance of the lens, the DOF is infinite, and the function will return -1.
-//    double depth_of_field(double subject_distance);
-//
-//    // Requires: ostream, Lens
-//    // Modifies: nothing
-//    // Effects: Prints the specifications of the lens.
-//    friend ostream& operator << (ostream& outs, const Lens &lens) {
-//        outs << "Focal Length =\t" << lens.get_focal_length() << " mm" << "\nF/stop =\tf/" << lens.get_f_stop() <<
-//        "\nCoC =\t\t" << lens.get_circle_of_confusion() << " mm" << "\nFrame Width =\t" << lens.get_frame_width() <<
-//        " mm" << "\nFrame Height =\t" << lens.get_frame_height() << " mm";
-//        return outs;
-//    }
 };
 
 #endif //LF_PROJECT1_LENS_H
