@@ -5,9 +5,36 @@
 #ifndef LF_PROJECT2_CAMERA_H
 #define LF_PROJECT2_CAMERA_H
 
+#include <optional>
+#include "Lens.h"
+
+using namespace std;
+
+typedef std::optional<std::string> opt_string;
 
 class Camera {
+private:
+    // Fields
+    double circle_of_confusion;
+    double frame_width;
+    double frame_height;
+    Lens lens;
 
+public:
+    Camera();
+    Camera(double circle_of_confusion_, double frame_width_, double frame_height_, Lens &lens_);
+
+    // GETTERS
+    double get_circle_of_confusion() const;
+    double get_frame_width() const;
+    const Lens &get_lens() const;
+    double get_frame_height() const;
+
+    // SETTERS
+    void set_circle_of_confusion(double circle_of_confusion);
+    void set_frame_height(double frame_height);
+    void set_frame_width(double frame_width);
+    void set_lens(const Lens &lens);
 };
 
 
