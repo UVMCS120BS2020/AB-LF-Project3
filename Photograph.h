@@ -17,7 +17,7 @@ public:
 
     Photograph(Camera &camera, double subject_distance);
 
-    Camera get_camera() const;
+    Camera get_camera();
     double get_subject_distance() const;
 
     void set_camera(Camera &camera);
@@ -41,6 +41,5 @@ public:
     // Effects: Calculates field of view for the lens using frame dimensions, focal length, and object distance (focus distance)
     double field_of_view_horizontal();
 };
-
 
 #endif //LF_PROJECT2_PHOTOGRAPH_H

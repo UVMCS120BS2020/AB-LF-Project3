@@ -26,7 +26,6 @@ public:
     Lens();
     Lens(double focal_length_, double f_stop_, opt_string &name_);
 
-
     // Getters
     // Requires: Nothing
     // Modifies: Nothing
@@ -47,6 +46,12 @@ public:
     // Modifies: name
     // Effects: sets name to nullopt
     void clear_name();
+
+    friend bool operator == (Lens &LHS, Lens &RHS) {
+        return (LHS.get_focal_length() == RHS.get_focal_length() &&
+                LHS.get_f_stop() == RHS.get_f_stop() &&
+                LHS.get_name() == RHS.get_name());
+    }
 };
 
 #endif //LF_PROJECT1_LENS_H

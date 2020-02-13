@@ -29,7 +29,7 @@ public:
     // GETTERS
     double get_circle_of_confusion() const;
     double get_frame_width() const;
-    const Lens &get_lens() const;
+    Lens &get_lens();
     double get_frame_height() const;
 
     // SETTERS
@@ -37,6 +37,13 @@ public:
     void set_frame_height(double frame_height);
     void set_frame_width(double frame_width);
     void set_lens(const Lens &lens);
+
+    friend bool operator == (Camera &LHS, Camera &RHS) {
+        return (LHS.get_circle_of_confusion() == RHS.get_circle_of_confusion() &&
+                LHS.get_frame_width() == RHS.get_frame_width() &&
+                LHS.get_frame_height() == RHS.get_frame_height() &&
+                LHS.get_lens() == RHS.get_lens());
+    }
 };
 
 

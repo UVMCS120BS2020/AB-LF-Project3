@@ -10,7 +10,7 @@ Photograph::Photograph(Camera &camera_, double subject_distance_) {
     subject_distance = subject_distance_;
 }
 
-Camera Photograph::get_camera() const {
+Camera Photograph::get_camera() {
     return camera;
 }
 

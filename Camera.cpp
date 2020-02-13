@@ -48,7 +48,7 @@ void Camera::set_frame_height(double frame_height) {
     Camera::frame_height = frame_height;
 }
 
-const Lens &Camera::get_lens() const {
+Lens &Camera::get_lens() {
     return lens;
 }
 
