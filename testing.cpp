@@ -2,29 +2,26 @@
 // Created by Luke on 2/5/2020.
 //
 
-//TODO: fix weird nullopt stuff
-//TODO: add == overload for lens, camera, photograph
-//TODO: add << overload for lens, camera, photograph
-
 #include <cmath>
 #include <iostream>
-#include <optional>
 #include "Lens.h"
 #include "Camera.h"
 #include "Photograph.h"
-
-using std::experimental::optional;
-using std::experimental::nullopt;
-using std::experimental::make_optional;
+#include <experimental/optional>
+using experimental::optional;
+using experimental::nullopt;
+using experimental::make_optional;
 using namespace std;
+
+typedef optional<string> opt_string;
 
 bool test_photograph();
 bool test_photograph_helper(Photograph &photograph, Camera &camera, double e_subject_distance);
 bool test_camera();
 bool test_camera_helper(Camera &camera, double e_circle_of_confusion,
-                        double e_frame_width, double e_frame_height);
+                        double e_frame_width, double e_frame_height, const Lens& e_lens);
 bool test_lens();
-bool test_lens_helper(Lens &lens, double e_focal_length, double e_f_stop, opt_string e_name);
+bool test_lens_helper(Lens &lens, double e_focal_length, double e_f_stop, const opt_string& e_name);
 bool test_dof();
 bool test_dof_helper(Photograph &photograph, double e_dof);
 bool test_magnification();
@@ -35,65 +32,68 @@ bool test_fov_helper(Photograph &photograph, double e_fov);
 
 int main() {
     if (test_lens()) {
-        std::cout << "Lens Test Passed." << std::endl;
+        cout << "Lens Test Passed." << endl;
     }
     if (test_camera()) {
-        std::cout << "Camera Test Passed." << std::endl;
+        cout << "Camera Test Passed." << endl;
     }
     if (test_photograph()) {
-        std::cout << "Photograph Test Passed." << std::endl;
+        cout << "Photograph Test Passed." << endl;
     }
+    return 0;
 }
 
 // test constructor and getters/setters of Lens class
 bool test_lens() {
+    //typedef optional<string> opt_string;
+
     double default_focal_length = 50.0;
     double default_f_stop = 4.0;
-    opt_string default_name = std::nullopt;
+    opt_string default_name = nullopt;
     double new_focal_length = 51.0;
     double new_f_stop = 5.0;
     opt_string new_name = "Lens1";
 
     // test default constructor
     Lens lens1 = Lens();
-    if (!test_lens_helper(lens1, default_focal_length, default_f_stop, std::nullopt)) {
-        std::cout << "\nTest case failed: Default Constructor" << std::endl;
+    if (!test_lens_helper(lens1, default_focal_length, default_f_stop, nullopt)) {
+        cout << "\nTest case failed: Default Constructor" << endl;
         return false;
     }
     // test set focal length
     lens1.set_focal_length(new_focal_length);
-    if (!test_lens_helper(lens1, new_focal_length, default_f_stop, std::nullopt)) {
-        std::cout << "\nTest case failed: focal_length Setter" << std::endl;
+    if (!test_lens_helper(lens1, new_focal_length, default_f_stop, nullopt)) {
+        cout << "\nTest case failed: focal_length Setter" << endl;
         return false;
     }
     // test set f stop
     lens1.set_f_stop(new_f_stop);
-    if (!test_lens_helper(lens1, new_focal_length, new_f_stop, std::nullopt)) {
-        std::cout << "\nTest case failed: f_stop setter" << std::endl;
+    if (!test_lens_helper(lens1, new_focal_length, new_f_stop, nullopt)) {
+        cout << "\nTest case failed: f_stop setter" << endl;
         return false;
     }
     // test set name
     lens1.set_name(new_name);
     if (!test_lens_helper(lens1, new_focal_length, new_f_stop, new_name)) {
-        std::cout << "\nTest case failed: name setter" << std::endl;
+        cout << "\nTest case failed: name setter" << endl;
         return false;
     }
     // test clear_name()
     lens1.clear_name();
-    if (!test_lens_helper(lens1, new_focal_length, new_f_stop,  std::nullopt)) {
-        std::cout << "\nTest case failed: clear_name()" << std::endl;
+    if (!test_lens_helper(lens1, new_focal_length, new_f_stop,  nullopt)) {
+        cout << "\nTest case failed: clear_name()" << endl;
         return false;
     }
     // test non-default constructor
     Lens lens2 = Lens(new_focal_length, new_f_stop, new_name);
     if (!test_lens_helper(lens2, new_focal_length, new_f_stop, new_name)) {
-        std::cout << "\nTest case failed: non-default constructor" << std::endl;
+        cout << "\nTest case failed: non-default constructor" << endl;
         return false;
     }
     return true;
 }
 
-bool test_lens_helper(Lens &lens, double e_focal_length, double e_f_stop, opt_string e_name) {
+bool test_lens_helper(Lens &lens, double e_focal_length, double e_f_stop, const opt_string& e_name) {
     // return true if all values are expected
     return (lens.get_focal_length() == e_focal_length && lens.get_f_stop() == e_f_stop &&
              lens.get_name() == e_name);
@@ -119,38 +119,38 @@ bool test_camera() {
     Lens new_lens = Lens();
 
     // test default constructor
-    if (!test_camera_helper(camera1, default_circle_of_confusion, default_frame_width, default_frame_height)) {
-        std::cout << "\nTest case failed: Default Constructor" << std::endl;
+    if (!test_camera_helper(camera1, default_circle_of_confusion, default_frame_width, default_frame_height, camera1.get_lens())) {
+        cout << "\nTest case failed: Default Constructor" << endl;
         return false;
     }
     //test CoC
     camera1.set_circle_of_confusion(new_circle_of_confusion);
-    if (!test_camera_helper(camera1, new_circle_of_confusion, default_frame_width, default_frame_height)) {
-        std::cout << "\nTest case failed: circle_of_confusion setter" << std::endl;
+    if (!test_camera_helper(camera1, new_circle_of_confusion, default_frame_width, default_frame_height, camera1.get_lens())) {
+        cout << "\nTest case failed: circle_of_confusion setter" << endl;
         return false;
     }
     //test frame width
     camera1.set_frame_width(new_frame_width);
-    if (!test_camera_helper(camera1, new_circle_of_confusion, new_frame_width, default_frame_height)) {
-        std::cout << "\nTest case failed: frame_width setter" << std::endl;
+    if (!test_camera_helper(camera1, new_circle_of_confusion, new_frame_width, default_frame_height, camera1.get_lens())) {
+        cout << "\nTest case failed: frame_width setter" << endl;
         return false;
     }
     //test frame height
     camera1.set_frame_height(new_frame_height);
-    if (!test_camera_helper(camera1, new_circle_of_confusion, new_frame_width, new_frame_height)) {
-        std::cout << "\nTest case failed: frame_height setter" << std::endl;
+    if (!test_camera_helper(camera1, new_circle_of_confusion, new_frame_width, new_frame_height, camera1.get_lens())) {
+        cout << "\nTest case failed: frame_height setter" << endl;
         return false;
     }
     //test lens
     camera1.set_lens(new_lens);
-    if (!test_camera_helper(camera1, new_circle_of_confusion, new_frame_width, new_frame_height)) {
-        std::cout << "\nTest case failed: Lens setter" << std::endl;
+    if (!test_camera_helper(camera1, new_circle_of_confusion, new_frame_width, new_frame_height, camera1.get_lens())) {
+        cout << "\nTest case failed: Lens setter" << endl;
         return false;
     }
     // test non-default constructor
     Camera camera2 = Camera(new_circle_of_confusion, new_frame_width, new_frame_height, new_lens);
-    if (!test_camera_helper(camera2, new_circle_of_confusion, new_frame_width, new_frame_height)) {
-        std::cout << "\nTest case failed: non-default constructor" << std::endl;
+    if (!test_camera_helper(camera2, new_circle_of_confusion, new_frame_width, new_frame_height, camera2.get_lens())) {
+        cout << "\nTest case failed: non-default constructor" << endl;
         return false;
     }
     return true;
@@ -158,7 +158,7 @@ bool test_camera() {
 
 // compares expected to actual values for Camera object
 bool test_camera_helper(Camera &camera, double e_circle_of_confusion,
-                        double e_frame_width, double e_frame_height, Lens &e_lens) {
+                        double e_frame_width, double e_frame_height, const Lens& e_lens) {
     // return true if all values are expected
     return (camera.get_circle_of_confusion() == e_circle_of_confusion && camera.get_frame_width() == e_frame_width &&
             camera.get_frame_height() == e_frame_height && camera.get_lens() == e_lens);
@@ -174,7 +174,7 @@ bool test_photograph() {
     // test constructor
     Photograph photograph1 = Photograph(camera1, subject_distance1);
     if (!test_photograph_helper(photograph1, camera1, subject_distance1)) {
-        std::cout << "\nTest case failed: constructor" << std::endl;
+        cout << "\nTest case failed: constructor" << endl;
         return false;
     }
 
@@ -184,7 +184,7 @@ bool test_photograph() {
     camera2.set_circle_of_confusion(new_circle_of_confusion);
     photograph1.set_camera(camera2);
     if (!test_photograph_helper(photograph1, camera2, subject_distance1)) {
-        std::cout << "\nTest case failed: camera setter" << std::endl;
+        cout << "\nTest case failed: camera setter" << endl;
         return false;
     }
 
@@ -192,22 +192,22 @@ bool test_photograph() {
     double new_subject_distance = 10.0;
     photograph1.set_subject_distance(new_subject_distance);
     if (!test_photograph_helper(photograph1, camera2, new_subject_distance)) {
-        std::cout << "\nTest case failed: subject distance setter" << std::endl;
+        cout << "\nTest case failed: subject distance setter" << endl;
         return false;
     }
 
     if (!test_dof()) {
-        std::cout << "\nTest Failed: DOF" << std::endl;
+        cout << "\nTest Failed: DOF" << endl;
         return false;
     }
 
     if (!test_magnification()) {
-        std::cout << "\nTest Failed: Magnification" << std::endl;
+        cout << "\nTest Failed: Magnification" << endl;
         return false;
     }
 
     if (!test_fov()) {
-        std::cout << "\nTest Failed: FOV" << std::endl;
+        cout << "\nTest Failed: FOV" << endl;
         return false;
     }
 
@@ -277,12 +277,12 @@ bool test_dof_helper(Photograph &photograph,  double e_dof) {
     // 0.1 meter tolerance
     const double TOLERANCE = 0.1;
     if (fabs(dof - e_dof) > TOLERANCE) {
-        std::cout << "\nTest case failed: DOF. \n\tfocal length = " << lens.get_focal_length() <<
+        cout << "\nTest case failed: DOF. \n\tfocal length = " << lens.get_focal_length() <<
                     "\n\tf stop = " << lens.get_f_stop() <<
                     "\n\tCoC = " << camera.get_circle_of_confusion() <<
                     "\n\tsubject distance = " << subject_distance <<
                     "\n\tDOF = " << dof <<
-                    "\n\te_DOF = " << e_dof << std::endl;
+                    "\n\te_DOF = " << e_dof << endl;
         return false;
     }
     return true;
@@ -349,8 +349,8 @@ bool test_magnification_helper(Photograph &photograph, double e_mag){
     // 0.01 tolerance
     const double TOLERANCE = 0.01;
     if (fabs(mag - e_mag) > TOLERANCE) {
-        std::cout << "\nTest case failed: Magnification. \n\tfocal length = " << lens.get_focal_length() <<
-                  "\n\tsubject distance = " << subject_distance << "\n\tmag = " << mag << "\n\te_mag = " << e_mag << std::endl;
+        cout << "\nTest case failed: Magnification. \n\tfocal length = " << lens.get_focal_length() <<
+                  "\n\tsubject distance = " << subject_distance << "\n\tmag = " << mag << "\n\te_mag = " << e_mag << endl;
         return false;
     }
     return true;
@@ -419,10 +419,10 @@ bool test_fov_helper(Photograph &photograph, double e_fov) {
     // 0.1 tolerance
     const double TOLERANCE = 0.1;
     if (fabs(fov - e_fov) > TOLERANCE) {
-        std::cout << "\nTest case failed: FOV. \n\tfocal length = " << lens.get_focal_length() <<
+        cout << "\nTest case failed: FOV. \n\tfocal length = " << lens.get_focal_length() <<
                 "\n\tframe width = " << camera.get_frame_width() <<
                 "\n\tmag = " << mag <<
-                "\n\tfov = " << fov << "\n\te_fov = " << e_fov << std::endl;
+                "\n\tfov = " << fov << "\n\te_fov = " << e_fov << endl;
         return false;
     }
     return true;

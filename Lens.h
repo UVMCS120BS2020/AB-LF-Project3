@@ -12,9 +12,10 @@ using std::experimental::nullopt;
 using std::experimental::make_optional;
 using namespace std;
 
-typedef optional<string> opt_string;
+
 
 class Lens {
+    typedef optional<string> opt_string;
 private:
     // Fields
     double f_stop;
@@ -47,7 +48,7 @@ public:
     // Effects: sets name to nullopt
     void clear_name();
 
-    friend bool operator == (Lens &LHS, Lens &RHS) {
+    friend bool operator == (const Lens &LHS, const Lens &RHS) {
         return (LHS.get_focal_length() == RHS.get_focal_length() &&
                 LHS.get_f_stop() == RHS.get_f_stop() &&
                 LHS.get_name() == RHS.get_name());

@@ -17,6 +17,7 @@ public:
 
     Photograph(Camera &camera, double subject_distance);
 
+    Camera get_camera() const;
     Camera get_camera();
     double get_subject_distance() const;
 
@@ -40,6 +41,11 @@ public:
     // Modifies: Nothing
     // Effects: Calculates field of view for the lens using frame dimensions, focal length, and object distance (focus distance)
     double field_of_view_horizontal();
+
+    friend bool operator == (const Photograph &LHS, const Photograph &RHS) {
+        return (LHS.get_camera() == RHS.get_camera() &&
+                LHS.get_subject_distance() == RHS.get_subject_distance());
+    }
 };
 
 #endif //LF_PROJECT2_PHOTOGRAPH_H
