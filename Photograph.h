@@ -18,7 +18,7 @@ public:
     Photograph(Camera &camera, double subject_distance);
 
     Camera get_camera() const;
-    Camera get_camera();
+    Camera & get_camera();
     double get_subject_distance() const;
 
     void set_camera(Camera &camera);

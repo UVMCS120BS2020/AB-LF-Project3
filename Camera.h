@@ -30,7 +30,7 @@ public:
     double get_circle_of_confusion() const;
     double get_frame_width() const;
     Lens get_lens() const;
-    Lens get_lens();
+    Lens & get_lens();
     double get_frame_height() const;
 
     // SETTERS

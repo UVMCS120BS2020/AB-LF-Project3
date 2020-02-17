@@ -52,7 +52,7 @@ Lens Camera::get_lens() const {
     return lens;
 }
 
-Lens Camera::get_lens() {
+Lens & Camera::get_lens() {
     return lens;
 }
 

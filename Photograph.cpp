@@ -14,7 +14,7 @@ Camera Photograph::get_camera() const {
     return camera;
 }
 
-Camera Photograph::get_camera() {
+Camera & Photograph::get_camera() {
     return camera;
 }
 

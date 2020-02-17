@@ -240,6 +240,7 @@ bool test_dof() {
     }
 
     // 100mm lens, 5m subject distance, 4.0 f/stop, 0.02mm CoC
+
     photograph1.get_camera().get_lens().set_focal_length(100.0);
     photograph1.set_subject_distance(5.0);
     if (!test_dof_helper(photograph1, 0.39)) {
