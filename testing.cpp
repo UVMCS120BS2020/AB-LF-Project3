@@ -15,6 +15,9 @@ using namespace std;
 
 typedef optional<string> opt_string;
 
+
+/********************** Testing Functions Declarations **********************/
+
 bool test_photograph();
 bool test_photograph_helper(Photograph &photograph, Camera &camera, double e_subject_distance);
 bool test_camera();
@@ -42,6 +45,10 @@ int main() {
     }
     return 0;
 }
+
+
+/********************** Testing Functions Definitions **********************/
+
 
 // test constructor and getters/setters of Lens class
 bool test_lens() {

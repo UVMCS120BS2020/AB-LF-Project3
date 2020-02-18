@@ -12,8 +12,6 @@ using std::experimental::nullopt;
 using std::experimental::make_optional;
 using namespace std;
 
-
-
 class Lens {
     typedef optional<string> opt_string;
 private:
@@ -23,8 +21,16 @@ private:
     opt_string name;
 
 public:
-    // Constructor
+    // Default Constructor
+    // Requires: Nothing
+    // Modifies: f_stop, focal_length, name
+    // Effects: Sets field(s) to default values
     Lens();
+
+    // Constructor
+    // Requires: Non-negative, non-zero double, and string optional
+    // Modifies: f_stop, focal_length, name
+    // Effects: Sets field(s) to the specified values
     Lens(double focal_length_, double f_stop_, opt_string &name_);
 
     // Getters
@@ -36,7 +42,7 @@ public:
     opt_string get_name() const;
 
     // Setters
-    // Requires: A non-negative, non-zero double
+    // Requires: Non-negative, non-zero double, and string optional
     // Modifies: The field being set
     // Effects: Sets the field to the specified value
     void set_f_stop(double f_stop_);
@@ -48,6 +54,9 @@ public:
     // Effects: sets name to nullopt
     void clear_name();
 
+    /*
+     * Overloaded Operator(s)
+     */
     friend bool operator == (const Lens &LHS, const Lens &RHS) {
         return (LHS.get_focal_length() == RHS.get_focal_length() &&
                 LHS.get_f_stop() == RHS.get_f_stop() &&

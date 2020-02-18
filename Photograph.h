@@ -10,6 +10,7 @@
 
 class Photograph {
 private:
+    // Fields
     Camera camera;
     double subject_distance;
 public:
