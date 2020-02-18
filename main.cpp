@@ -1,9 +1,9 @@
 #include <iostream>
 #include <iomanip>
 #include <memory>
-
+#include <algorithm>
 #include "Lens.h"
-#include "globals.h"
+
 #include <experimental/optional>
 using std::experimental::optional;
 using std::experimental::nullopt;
