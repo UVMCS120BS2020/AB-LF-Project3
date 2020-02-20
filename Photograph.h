@@ -18,6 +18,10 @@ private:
 public:
     constexpr static const double MM_PER_METER = 1000;
 
+    // Constructor
+    // Requires: camera object, non-zero, non-negative double
+    // Modifies: camera, subject_distance
+    // Effects: Sets field(s) to the specified values
     Photograph(Camera &camera, double subject_distance);
 
     // Getters
