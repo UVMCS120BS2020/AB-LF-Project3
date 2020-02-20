@@ -1,8 +1,9 @@
 //
-// Created by Luke on 1/20/2020.
+// Created by Luke on 2/12/2020.
 //
-#ifndef LF_PROJECT1_LENS_H
-#define LF_PROJECT1_LENS_H
+
+#ifndef LF_PROJECT2_ABSTRACT_LENS_H
+#define LF_PROJECT2_ABSTRACT_LENS_H
 
 #include <iostream>
 #include <iomanip>
@@ -12,15 +13,32 @@ using std::experimental::nullopt;
 using std::experimental::make_optional;
 using namespace std;
 
+// the conversion factor between mm and meters
+double const MM_PER_METER = 1000;
+
 class Lens {
     typedef optional<string> opt_string;
-private:
-    // Fields
+protected:
+    /*
+     * Fields
+     */
+    // f/stop = focal length (mm) / aperture diameter (mm)
     double f_stop;
+    // the distance between the center of a lens and its focal plane
     double focal_length;
+    // Name of the lens, by default nothing.
     opt_string name;
 
+    // Lense type
+    enum lens_type {
+        rectilinear,
+        curvilinear,
+        no_type
+    };
+    lens_type type;
+
 public:
+
     // Default Constructor
     // Requires: Nothing
     // Modifies: f_stop, focal_length, name
@@ -32,6 +50,11 @@ public:
     // Modifies: f_stop, focal_length, name
     // Effects: Sets field(s) to the specified values
     Lens(double focal_length_, double f_stop_, opt_string &name_);
+
+    /*
+     * Destructor
+     */
+    virtual ~Lens() = 0;
 
     // Getters
     // Requires: Nothing
@@ -64,4 +87,5 @@ public:
     }
 };
 
-#endif //LF_PROJECT1_LENS_H
+
+#endif //LF_PROJECT2_ABSTRACT_LENS_H

@@ -13,11 +13,11 @@ Camera::Camera() {
     // This is a measure of the sensor or film height in millimeters. 24mm is the height of a standard 35mm film frame.
     frame_height = 24.0;
     // make default lens
-    Lens default_lens = Lens();
+    Rectilinear_Lens default_lens = Rectilinear_Lens();
     lens = default_lens;
 }
 
-Camera::Camera(double circle_of_confusion_, double frame_width_, double frame_height_, const Lens &lens_) {
+Camera::Camera(double circle_of_confusion_, double frame_width_, double frame_height_, const Rectilinear_Lens &lens_) {
     this -> circle_of_confusion = circle_of_confusion_;
     this -> frame_width = frame_width_;
     this -> frame_height = frame_height_;
@@ -48,15 +48,15 @@ void Camera::set_frame_height(double frame_height_) {
     Camera::frame_height = frame_height_;
 }
 
-Lens Camera::get_lens() const {
+Rectilinear_Lens Camera::get_lens() const {
     return lens;
 }
 
-Lens & Camera::get_lens() {
+Rectilinear_Lens & Camera::get_lens() {
     return lens;
 }
 
-void Camera::set_lens(const Lens &lens_) {
+void Camera::set_lens(const Rectilinear_Lens &lens_) {
     Camera::lens = lens;
 }
 

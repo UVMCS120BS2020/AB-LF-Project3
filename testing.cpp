@@ -4,7 +4,7 @@
 
 #include <cmath>
 #include <iostream>
-#include "Lens.h"
+#include "Rectilinear_Lens.h"
 #include "Camera.h"
 #include "Photograph.h"
 #include <experimental/optional>
@@ -22,9 +22,9 @@ bool test_photograph();
 bool test_photograph_helper(Photograph &photograph, Camera &camera, double e_subject_distance);
 bool test_camera();
 bool test_camera_helper(Camera &camera, double e_circle_of_confusion,
-                        double e_frame_width, double e_frame_height, const Lens& e_lens);
+                        double e_frame_width, double e_frame_height, const Rectilinear_Lens& e_lens);
 bool test_lens();
-bool test_lens_helper(Lens &lens, double e_focal_length, double e_f_stop, const opt_string& e_name);
+bool test_lens_helper(Rectilinear_Lens &lens, double e_focal_length, double e_f_stop, const opt_string& e_name);
 bool test_dof();
 bool test_dof_helper(Photograph &photograph, double e_dof);
 bool test_magnification();
@@ -35,7 +35,7 @@ bool test_fov_helper(Photograph &photograph, double e_fov);
 
 int main() {
     if (test_lens()) {
-        cout << "Lens Test Passed." << endl;
+        cout << "Rectilinear_Lens Test Passed." << endl;
     }
     if (test_camera()) {
         cout << "Camera Test Passed." << endl;
@@ -50,7 +50,7 @@ int main() {
 /********************** Testing Functions Definitions **********************/
 
 
-// test constructor and getters/setters of Lens class
+// test constructor and getters/setters of Rectilinear_Lens class
 bool test_lens() {
     //typedef optional<string> opt_string;
 
@@ -62,7 +62,7 @@ bool test_lens() {
     opt_string new_name = "Lens1";
 
     // test default constructor
-    Lens lens1 = Lens();
+    Rectilinear_Lens lens1 = Rectilinear_Lens();
     if (!test_lens_helper(lens1, default_focal_length, default_f_stop, nullopt)) {
         cout << "\nTest case failed: Default Constructor" << endl;
         return false;
@@ -92,7 +92,7 @@ bool test_lens() {
         return false;
     }
     // test non-default constructor
-    Lens lens2 = Lens(new_focal_length, new_f_stop, new_name);
+    Rectilinear_Lens lens2 = Rectilinear_Lens(new_focal_length, new_f_stop, new_name);
     if (!test_lens_helper(lens2, new_focal_length, new_f_stop, new_name)) {
         cout << "\nTest case failed: non-default constructor" << endl;
         return false;
@@ -100,7 +100,7 @@ bool test_lens() {
     return true;
 }
 
-bool test_lens_helper(Lens &lens, double e_focal_length, double e_f_stop, const opt_string& e_name) {
+bool test_lens_helper(Rectilinear_Lens &lens, double e_focal_length, double e_f_stop, const opt_string& e_name) {
     // return true if all values are expected
     return (lens.get_focal_length() == e_focal_length && lens.get_f_stop() == e_f_stop &&
              lens.get_name() == e_name);
@@ -123,7 +123,7 @@ bool test_camera() {
     double new_focal_length = 51.0;
     double new_f_stop = 5.0;
     opt_string new_name = "Lens1";
-    Lens new_lens = Lens();
+    Rectilinear_Lens new_lens = Rectilinear_Lens();
 
     // test default constructor
     if (!test_camera_helper(camera1, default_circle_of_confusion, default_frame_width, default_frame_height, camera1.get_lens())) {
@@ -151,7 +151,7 @@ bool test_camera() {
     //test lens
     camera1.set_lens(new_lens);
     if (!test_camera_helper(camera1, new_circle_of_confusion, new_frame_width, new_frame_height, camera1.get_lens())) {
-        cout << "\nTest case failed: Lens setter" << endl;
+        cout << "\nTest case failed: Rectilinear_Lens setter" << endl;
         return false;
     }
     // test non-default constructor
@@ -165,7 +165,7 @@ bool test_camera() {
 
 // compares expected to actual values for Camera object
 bool test_camera_helper(Camera &camera, double e_circle_of_confusion,
-                        double e_frame_width, double e_frame_height, const Lens& e_lens) {
+                        double e_frame_width, double e_frame_height, const Rectilinear_Lens& e_lens) {
     // return true if all values are expected
     return (camera.get_circle_of_confusion() == e_circle_of_confusion && camera.get_frame_width() == e_frame_width &&
             camera.get_frame_height() == e_frame_height && camera.get_lens() == e_lens);
@@ -229,7 +229,7 @@ bool test_photograph_helper(Photograph &photograph, Camera &e_camera, double e_s
 
 bool test_dof() {
     // expected values from https://www.dofmaster.com/dofjs.html
-    Lens lens1 = Lens(); // focal_length = 50mm, f_stop = 4.0, CoC = 0.02
+    Rectilinear_Lens lens1 = Rectilinear_Lens(); // focal_length = 50mm, f_stop = 4.0, CoC = 0.02
     Camera camera1 = Camera();
     camera1.set_lens(lens1);
     double default_subject_distance = 5.0;
@@ -281,7 +281,7 @@ bool test_dof_helper(Photograph &photograph,  double e_dof) {
     double dof = photograph.depth_of_field();
     double subject_distance = photograph.get_subject_distance();
     Camera camera = photograph.get_camera();
-    Lens lens = camera.get_lens();
+    Rectilinear_Lens lens = camera.get_lens();
     // 0.1 meter tolerance
     const double TOLERANCE = 0.1;
     if (fabs(dof - e_dof) > TOLERANCE) {
@@ -298,7 +298,7 @@ bool test_dof_helper(Photograph &photograph,  double e_dof) {
 
 bool test_magnification() {
     // expected values from https://www.kielia.de/photography/calculator/
-    Lens lens1 = Lens(); // focal_length = 50mm, f_stop = 4.0, CoC = 0.02
+    Rectilinear_Lens lens1 = Rectilinear_Lens(); // focal_length = 50mm, f_stop = 4.0, CoC = 0.02
     Camera camera1 = Camera();
     camera1.set_lens(lens1);
     double default_subject_distance = 5.0;
@@ -353,7 +353,7 @@ bool test_magnification() {
 bool test_magnification_helper(Photograph &photograph, double e_mag){
     double subject_distance = photograph.get_subject_distance();
     double mag = photograph.calculate_magnification();
-    Lens lens = photograph.get_camera().get_lens();
+    Rectilinear_Lens lens = photograph.get_camera().get_lens();
     // 0.01 tolerance
     const double TOLERANCE = 0.01;
     if (fabs(mag - e_mag) > TOLERANCE) {
@@ -366,7 +366,7 @@ bool test_magnification_helper(Photograph &photograph, double e_mag){
 
 bool test_fov() {
     // expected values from https://www.pointsinfocus.com/tools/depth-of-field-and-equivalent-lens-calculator/
-    Lens lens1 = Lens(); // focal_length = 50mm
+    Rectilinear_Lens lens1 = Rectilinear_Lens(); // focal_length = 50mm
     Camera camera1 = Camera(); // frame_width = 36mm
     camera1.set_lens(lens1);
     double default_subject_distance = 5.0;
@@ -421,7 +421,7 @@ bool test_fov() {
 
 bool test_fov_helper(Photograph &photograph, double e_fov) {
     Camera camera = photograph.get_camera();
-    Lens lens = camera.get_lens();
+    Rectilinear_Lens lens = camera.get_lens();
     double mag = photograph.calculate_magnification();
     double fov = photograph.field_of_view_horizontal();
     // 0.1 tolerance

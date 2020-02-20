@@ -2,7 +2,7 @@
 #include <iomanip>
 #include <memory>
 #include <algorithm>
-#include "Lens.h"
+#include "Rectilinear_Lens.h"
 
 #include <experimental/optional>
 using std::experimental::optional;
@@ -87,7 +87,7 @@ void user_lens_calculator() {
     double focal_length, f_stop, circle_of_confusion, frame_width, frame_height, subject_distance;
     opt_string name = nullopt;
 
-    cout << "Welcome to Luke's Lens calculator! Please fill out the following information to create your lens." << endl;
+    cout << "Welcome to Luke's Rectilinear_Lens calculator! Please fill out the following information to create your lens." << endl;
     // get user input for all lens params
     focal_length = prompt_user_for_positive_double("Please enter the focal length of your lens (mm): ",
                                                           positive_double_error_message);
@@ -109,7 +109,7 @@ void user_lens_calculator() {
         name = prompt_user_for_string("Please enter the name of your lens: ", "Please enter a name: ");
     }
 
-    unique_ptr<Lens> lens = make_unique<Lens>(focal_length, f_stop, circle_of_confusion, frame_width, frame_height, name);
+    unique_ptr<Rectilinear_Lens> lens = make_unique<Rectilinear_Lens>(focal_length, f_stop, circle_of_confusion, frame_width, frame_height, name);
 
     // get subject distance
     subject_distance = prompt_user_for_positive_double("Please enter the distance your subject is from the lens (meters): ",

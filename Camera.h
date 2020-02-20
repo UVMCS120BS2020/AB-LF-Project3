@@ -5,7 +5,7 @@
 #ifndef LF_PROJECT2_CAMERA_H
 #define LF_PROJECT2_CAMERA_H
 
-#include "Lens.h"
+#include "Rectilinear_Lens.h"
 #include <experimental/optional>
 using std::experimental::optional;
 using std::experimental::nullopt;
@@ -20,24 +20,24 @@ private:
     double circle_of_confusion;
     double frame_width;
     double frame_height;
-    Lens lens;
+    Rectilinear_Lens lens;
 
 public:
     Camera();
-    Camera(double circle_of_confusion_, double frame_width_, double frame_height_, const Lens &lens_);
+    Camera(double circle_of_confusion_, double frame_width_, double frame_height_, const Rectilinear_Lens &lens_);
 
     // GETTERS
     double get_circle_of_confusion() const;
     double get_frame_width() const;
-    Lens get_lens() const;
-    Lens & get_lens();
+    Rectilinear_Lens get_lens() const;
+    Rectilinear_Lens & get_lens();
     double get_frame_height() const;
 
     // SETTERS
     void set_circle_of_confusion(double circle_of_confusion_);
     void set_frame_height(double frame_height_);
     void set_frame_width(double frame_width_);
-    void set_lens(const Lens &lens_);
+    void set_lens(const Rectilinear_Lens &lens_);
 
     friend bool operator == (const Camera &LHS, const Camera &RHS) {
         return (LHS.get_circle_of_confusion() == RHS.get_circle_of_confusion() &&

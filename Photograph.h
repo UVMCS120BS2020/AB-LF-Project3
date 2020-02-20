@@ -32,13 +32,13 @@ public:
     //          If subject distance is beyond the hyper-focal distance of the lens, the DOF is infinite, and the function will return -1.
     double depth_of_field();
 
-    // Requires: A valid Lens object, A non-negative, non-zero double (subject distance in meters),
+    // Requires: A valid Rectilinear_Lens object, A non-negative, non-zero double (subject distance in meters),
     //              where the subject distance (m) is greater than the lens length (mm)
     // Modifies: Nothing
     // Effects: Calculates magnification using focal length and object distance (focus distance)
     double calculate_magnification();
 
-    // Requires: A valid Lens object, A non-negative non-zero double
+    // Requires: A valid Rectilinear_Lens object, A non-negative non-zero double
     // Modifies: Nothing
     // Effects: Calculates field of view for the lens using frame dimensions, focal length, and object distance (focus distance)
     double field_of_view_horizontal();
