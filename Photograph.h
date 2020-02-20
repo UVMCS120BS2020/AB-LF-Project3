@@ -20,14 +20,21 @@ public:
 
     Photograph(Camera &camera, double subject_distance);
 
+    // Getters
+    // Requires: Nothing
+    // Modifies: Nothing
+    // Effects: Returns specified field
     Camera get_camera() const;
     Camera & get_camera();
     double get_subject_distance() const;
 
+    // Setters
+    // Requires: Non-negative, non-zero double, and Camera object
+    // Modifies: The field being set
+    // Effects: Sets the field to the specified value
     void set_camera(Camera &camera);
     void set_subject_distance(double subject_distance);
 
-public:
     // Requires: A non-negative, non-zero double, which is greater than the focal length in mm of the lens.
     // Modifies: Nothing
     // Effects: Calculates the total depth of field (the depth of a 3-dimensional area of space which is appropriately in focus)
@@ -40,8 +47,14 @@ public:
     // Effects: Calculates magnification using focal length and object distance (focus distance)
     double calculate_magnification() const;
 
+    // Requires: Two Photographe objects
+    // Modifies: nothing
+    // Effects: Compares the fields of two Photograph objects for equality, and returns true or false.
     friend bool operator == (const Photograph &LHS, const Photograph &RHS);
 
+    // Requires: ostream, Photograph
+    // Modifies: nothing
+    // Effects: Prints the specifications of the photograph.
     friend ostream &operator<<(ostream &os, const Photograph &photograph);
 };
 
