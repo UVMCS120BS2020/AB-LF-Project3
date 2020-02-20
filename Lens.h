@@ -75,6 +75,11 @@ public:
     // Effects: sets name to nullopt
     void clear_name();
 
+    // Requires: Non-negative double magnification, non-negative double frame_width
+    // Modifies: Nothing
+    // Effects: Calculates field of view for the lens using frame dimensions, focal length, and object distance (focus distance)
+    virtual double field_of_view_horizontal(double magnification, double frame_width) const = 0;
+
     // Requires: Nothing
     // Modifies: Nothing
     // Effects: Returns lens type as a string.

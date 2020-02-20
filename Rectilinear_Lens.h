@@ -37,7 +37,7 @@ public:
     // Requires: Non-negative double magnification, non-negative double frame_width
     // Modifies: Nothing
     // Effects: Calculates field of view for the lens using frame dimensions, focal length, and object distance (focus distance)
-    double field_of_view_horizontal(double magnification, double frame_width) const;
+    double field_of_view_horizontal(double magnification, double frame_width) const override;
 
     // Requires: ostream, Lens
     // Modifies: Nothing
