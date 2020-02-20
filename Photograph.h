@@ -47,7 +47,7 @@ public:
     // Effects: Calculates magnification using focal length and object distance (focus distance)
     double calculate_magnification() const;
 
-    // Requires: Two Photographe objects
+    // Requires: Two Photograph objects
     // Modifies: nothing
     // Effects: Compares the fields of two Photograph objects for equality, and returns true or false.
     friend bool operator == (const Photograph &LHS, const Photograph &RHS);
