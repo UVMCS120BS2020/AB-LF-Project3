@@ -423,7 +423,7 @@ bool test_fov_helper(Photograph &photograph, double e_fov) {
     Camera camera = photograph.get_camera();
     Rectilinear_Lens lens = camera.get_lens();
     double mag = photograph.calculate_magnification();
-    double fov = photograph.field_of_view_horizontal();
+    double fov = photograph.get_camera().get_lens().field_of_view_horizontal(mag, camera.get_frame_width());
     // 0.1 tolerance
     const double TOLERANCE = 0.1;
     if (fabs(fov - e_fov) > TOLERANCE) {

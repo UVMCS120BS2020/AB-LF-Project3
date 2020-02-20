@@ -57,12 +57,25 @@ double Photograph::calculate_magnification() const {
     return magnification;
 }
 
-double Photograph::field_of_view_horizontal() const {
-    // Horizontal FOV = 2 * ARCTAN( w / (2*f*(m+1)) ) -> convert to degrees
-    // w = frame width, f = focal length, m = magnification
-    double m = calculate_magnification();
-    double w = camera.get_frame_width();
-    double f = camera.get_lens().get_focal_length();
-    double h_fov = 2 * atan(w / (2*f*(m+1))) * (180.0 / M_PI);
-    return h_fov;
+bool operator == (const Photograph &LHS, const Photograph &RHS) {
+    return (LHS.get_camera() == RHS.get_camera() &&
+            LHS.get_subject_distance() == RHS.get_subject_distance());
+}
+
+ostream &operator<<(ostream &outs, const Photograph &photograph) {
+    double depth_of_field = photograph.depth_of_field();
+    double magnification = photograph.calculate_magnification();
+    double field_of_view = photograph.get_camera().get_lens().field_of_view_horizontal(magnification, photograph.camera.get_frame_width());
+
+    outs << "Subj. Dist. =\t" << photograph.subject_distance << " meters" << endl;
+    outs << "DOF =\t\t";
+    if (depth_of_field >= 0) {
+        outs << setprecision(3) << depth_of_field << " meters" << endl;
+    } else {
+        outs << "infinite (subject is beyond hyper-focal distance)" << endl;
+    }
+    outs << "Magnification =\t" << setprecision(3) << magnification << " x" << endl;
+    outs << "Hor. FOV =\t" << setprecision(3) << field_of_view << " degrees" << endl;
+    outs << "Camera:\n" << photograph.get_camera() << endl;
+    return outs;
 }

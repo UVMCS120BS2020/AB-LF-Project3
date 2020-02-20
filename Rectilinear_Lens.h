@@ -34,6 +34,11 @@ public:
     // Effects: Deletes object and deallocates it from memory.
     ~Rectilinear_Lens() override = default;
 
+    // Requires: Non-negative double magnification, non-negative double frame_width
+    // Modifies: Nothing
+    // Effects: Calculates field of view for the lens using frame dimensions, focal length, and object distance (focus distance)
+    double field_of_view_horizontal(double magnification, double frame_width) const;
+
     // Requires: ostream, Lens
     // Modifies: Nothing
     // Effects: Prints the specifications of the lens.
