@@ -13,8 +13,6 @@ using std::experimental::nullopt;
 using std::experimental::make_optional;
 using namespace std;
 
-// the conversion factor between mm and meters
-double const MM_PER_METER = 1000;
 
 class Lens {
     typedef optional<string> opt_string;

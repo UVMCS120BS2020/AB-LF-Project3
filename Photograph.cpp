@@ -30,7 +30,7 @@ void Photograph::set_subject_distance(double subject_distance_) {
     Photograph::subject_distance = subject_distance_;
 }
 
-double Photograph::depth_of_field() {
+double Photograph::depth_of_field() const {
     // EQ from: https://damienfournier.co/dof-the-simplified-formula-to-understand-dof/
     // DOF = ((s*(f*f)) / ((f*f) - A*c*(s-f))) - ((s*(f*f)) / ((f*f) + A*c*(s-f)))
     // s = subject distance, A = f/stop, c = circle of confusion, f = focal length
@@ -48,7 +48,7 @@ double Photograph::depth_of_field() {
     return -1.0;
 }
 
-double Photograph::calculate_magnification() {
+double Photograph::calculate_magnification() const {
     // magnification = f / (s-f)
     // f = focal length, s = subject distance
     double s = subject_distance*MM_PER_METER; // convert to mm, simplify var name for clarity
@@ -57,7 +57,7 @@ double Photograph::calculate_magnification() {
     return magnification;
 }
 
-double Photograph::field_of_view_horizontal() {
+double Photograph::field_of_view_horizontal() const {
     // Horizontal FOV = 2 * ARCTAN( w / (2*f*(m+1)) ) -> convert to degrees
     // w = frame width, f = focal length, m = magnification
     double m = calculate_magnification();

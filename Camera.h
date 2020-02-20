@@ -12,6 +12,8 @@ using std::experimental::nullopt;
 using std::experimental::make_optional;
 using namespace std;
 
+// the conversion factor between mm and meters
+double const MM_PER_METER = 1000;
 
 class Camera {
     typedef optional<string> opt_string;
@@ -45,6 +47,18 @@ public:
                 LHS.get_frame_height() == RHS.get_frame_height() &&
                 LHS.get_lens() == RHS.get_lens());
     }
+
+    // Requires: ostream, Camera
+    // Modifies: nothing
+    // Effects: Prints the specifications of the lens.
+    friend ostream& operator << (ostream& outs, const Camera &camera) {
+        outs << "CoC =\t\t" << camera.get_circle_of_confusion() << " mm" << endl;
+        outs << "Frame Width =\t" << camera.get_frame_width() << " mm" << endl;
+        outs << "Frame Height =\t" << camera.get_frame_height() << " mm" << endl;
+        outs << "Lens:\n" << camera.get_lens() << endl;
+        return outs;
+    }
+
 };
 
 

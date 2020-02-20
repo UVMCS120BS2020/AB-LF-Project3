@@ -34,6 +34,15 @@ public:
      */
     ~Rectilinear_Lens() override = default;
 
+    // Requires: ostream, Lens
+    // Modifies: nothing
+    // Effects: Prints the specifications of the lens.
+    friend ostream& operator << (ostream& outs, const Lens &lens) {
+        outs << "Focal Length =\t" << lens.get_focal_length() << " mm" << endl;
+        outs << "F/stop =\tf/" << lens.get_f_stop() << endl;
+        return outs;
+    }
+
 };
 
 #endif //LF_PROJECT1_LENS_H

@@ -57,7 +57,7 @@ Rectilinear_Lens & Camera::get_lens() {
 }
 
 void Camera::set_lens(const Rectilinear_Lens &lens_) {
-    Camera::lens = lens;
+    Camera::lens = lens_;
 }
 
 
