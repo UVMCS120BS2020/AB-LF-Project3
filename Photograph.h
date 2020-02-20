@@ -6,6 +6,7 @@
 #define LF_PROJECT2_PHOTOGRAPH_H
 
 
+#include <ostream>
 #include "Camera.h"
 
 class Photograph {
@@ -38,32 +39,9 @@ public:
     // Effects: Calculates magnification using focal length and object distance (focus distance)
     double calculate_magnification() const;
 
-    // Requires: A valid Rectilinear_Lens object, A non-negative non-zero double
-    // Modifies: Nothing
-    // Effects: Calculates field of view for the lens using frame dimensions, focal length, and object distance (focus distance)
-    double field_of_view_horizontal() const;
+    friend bool operator == (const Photograph &LHS, const Photograph &RHS);
 
-    friend bool operator == (const Photograph &LHS, const Photograph &RHS) {
-        return (LHS.get_camera() == RHS.get_camera() &&
-                LHS.get_subject_distance() == RHS.get_subject_distance());
-    }
-
-    // Requires: ostream, Camera
-    // Modifies: nothing
-    // Effects: Prints the specifications of the lens.
-    friend ostream& operator << (ostream& outs, const Photograph &photograph) {
-        outs << "Subj. Dist. =\t" << photograph.subject_distance << " meters" << endl;
-        outs << "DOF =\t\t";
-        if (photograph.depth_of_field() >= 0) {
-            outs << setprecision(3) << photograph.depth_of_field() << " meters" << endl;
-        } else {
-            outs << "infinite (subject is beyond hyper-focal distance)" << endl;
-        }
-        outs << "Magnification =\t" << setprecision(3) << photograph.calculate_magnification() << " x" << endl;
-        outs << "Hor. FOV =\t" << setprecision(3) << photograph.field_of_view_horizontal() << " degrees" << endl;
-        outs << "Camera:\n" << photograph.get_camera() << endl;
-        return outs;
-    }
+    friend ostream &operator<<(ostream &os, const Photograph &photograph);
 };
 
 #endif //LF_PROJECT2_PHOTOGRAPH_H

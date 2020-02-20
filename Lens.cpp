@@ -47,8 +47,17 @@ void Lens::clear_name() {
     name = nullopt;
 }
 
+bool operator == (const Lens &LHS, const Lens &RHS) {
+    return (LHS.get_focal_length() == RHS.get_focal_length() &&
+            LHS.get_f_stop() == RHS.get_f_stop() &&
+            LHS.get_name() == RHS.get_name());
+}
 
-
+ostream& operator << (ostream& outs, const Lens &lens) {
+    outs << "Focal Length =\t" << lens.get_focal_length() << " mm" << endl;
+    outs << "F/stop =\tf/" << lens.get_f_stop() << endl;
+    return outs;
+}
 
 
 

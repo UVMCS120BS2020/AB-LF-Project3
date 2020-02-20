@@ -34,14 +34,11 @@ public:
      */
     ~Rectilinear_Lens() override = default;
 
-    // Requires: ostream, Lens
-    // Modifies: nothing
-    // Effects: Prints the specifications of the lens.
-    friend ostream& operator << (ostream& outs, const Lens &lens) {
-        outs << "Focal Length =\t" << lens.get_focal_length() << " mm" << endl;
-        outs << "F/stop =\tf/" << lens.get_f_stop() << endl;
-        return outs;
-    }
+    // Requires: Non-negative double magnification, non-negative double frame_width
+    // Modifies: Nothing
+    // Effects: Calculates field of view for the lens using frame dimensions, focal length, and object distance (focus distance)
+    double field_of_view_horizontal(double magnification, double frame_width) const;
+
 
 };
 

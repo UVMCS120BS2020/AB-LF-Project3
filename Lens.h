@@ -78,11 +78,12 @@ public:
     /*
      * Overloaded Operator(s)
      */
-    friend bool operator == (const Lens &LHS, const Lens &RHS) {
-        return (LHS.get_focal_length() == RHS.get_focal_length() &&
-                LHS.get_f_stop() == RHS.get_f_stop() &&
-                LHS.get_name() == RHS.get_name());
-    }
+    friend bool operator == (const Lens &LHS, const Lens &RHS);
+
+    // Requires: ostream, Lens
+    // Modifies: nothing
+    // Effects: Prints the specifications of the lens.
+    friend ostream& operator << (ostream& outs, const Lens &lens);
 };
 
 
