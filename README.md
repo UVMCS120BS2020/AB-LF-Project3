@@ -2,15 +2,6 @@
 Due on Gradescope by Friday, February 21st.
 For this project you will design, implement, test, and use C++ class inheritance with components.
 
-## To Do:
-**Austin** is working on:
-- [ ] The Abstract_Lens class.
-- [ ] Style clean up
-- [ ] RME's
-
-**Luke** is working on:
-- [ ] Testing functions.
-
 ## Requirements
 - You may work individually or with a partner of your choosing.
     - You may reuse code from previous project(s), if appropriate.
@@ -30,7 +21,6 @@ What added or modified methods will the child class have?
 What added fields will the child class have? 
 Where does the component belong? 
 How will the unrelated class interact with the others?
-    >a
 
 - [ ]  Your classes should be declared in header file(s) (with comments) and defined in corresponding `.cpp` file(s).
 
