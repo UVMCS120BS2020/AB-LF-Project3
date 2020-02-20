@@ -49,6 +49,7 @@ string Lens::get_type() const {
         case curvilinear: return "Curvilinear";
         case no_type: return "No Type";
     }
+    return "";
 }
 
 bool operator == (const Lens &LHS, const Lens &RHS) {
