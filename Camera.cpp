@@ -60,4 +60,17 @@ void Camera::set_lens(const Rectilinear_Lens &lens_) {
     Camera::lens = lens_;
 }
 
+bool operator == (const Camera &LHS, const Camera &RHS) {
+    return (LHS.get_circle_of_confusion() == RHS.get_circle_of_confusion() &&
+            LHS.get_frame_width() == RHS.get_frame_width() &&
+            LHS.get_frame_height() == RHS.get_frame_height() &&
+            LHS.get_lens() == RHS.get_lens());
+}
 
+ostream& operator << (ostream& outs, const Camera &camera) {
+    outs << "CoC =\t\t" << camera.get_circle_of_confusion() << " mm" << endl;
+    outs << "Frame Width =\t" << camera.get_frame_width() << " mm" << endl;
+    outs << "Frame Height =\t" << camera.get_frame_height() << " mm" << endl;
+    outs << "Lens:\n" << camera.get_lens() << endl;
+    return outs;
+}

@@ -5,12 +5,13 @@
 #ifndef LF_PROJECT2_PHOTOGRAPH_H
 #define LF_PROJECT2_PHOTOGRAPH_H
 
-
 #include "Camera.h"
 
 class Photograph {
 private:
-    // Fields
+    /*
+     * Fields
+     */
     Camera camera;
     double subject_distance;
 public:
@@ -33,7 +34,7 @@ public:
     double depth_of_field() const;
 
     // Requires: A valid Rectilinear_Lens object, A non-negative, non-zero double (subject distance in meters),
-    //              where the subject distance (m) is greater than the lens length (mm)
+    //           where the subject distance (m) is greater than the lens length (mm)
     // Modifies: Nothing
     // Effects: Calculates magnification using focal length and object distance (focus distance)
     double calculate_magnification() const;

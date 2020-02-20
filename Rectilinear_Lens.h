@@ -8,7 +8,6 @@
 #include <iomanip>
 #include <experimental/optional>
 #include "Lens.h"
-
 using std::experimental::optional;
 using std::experimental::nullopt;
 using std::experimental::make_optional;
@@ -29,19 +28,16 @@ public:
     // Effects: Sets field(s) to the specified values
     Rectilinear_Lens(double focal_length_, double f_stop_, opt_string &name_);
 
-    /*
-     * Destructor
-     */
+    // Destructor
+    // Requires: Nothing
+    // Modifies: Nothing
+    // Effects: Deletes object and deallocates it from memory.
     ~Rectilinear_Lens() override = default;
 
     // Requires: ostream, Lens
-    // Modifies: nothing
+    // Modifies: Nothing
     // Effects: Prints the specifications of the lens.
-    friend ostream& operator << (ostream& outs, const Lens &lens) {
-        outs << "Focal Length =\t" << lens.get_focal_length() << " mm" << endl;
-        outs << "F/stop =\tf/" << lens.get_f_stop() << endl;
-        return outs;
-    }
+    friend ostream& operator << (ostream& outs, const Rectilinear_Lens &lens);
 
 };
 

@@ -20,3 +20,10 @@ Rectilinear_Lens::Rectilinear_Lens() : Lens() {
 Rectilinear_Lens::Rectilinear_Lens(double focal_length_, double f_stop_, opt_string &name_) : Lens(focal_length_, f_stop_, name_) {
     type = rectilinear;
 }
+
+ostream& operator << (ostream& outs, const Rectilinear_Lens &lens) {
+    outs << "Lens Type =\t" << lens.get_type() << endl;
+    outs << "Focal Length =\t" << lens.get_focal_length() << " mm" << endl;
+    outs << "F/stop =\tf/" << lens.get_f_stop() << endl;
+    return outs;
+}
